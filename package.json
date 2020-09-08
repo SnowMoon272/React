@@ -1,0 +1,24 @@
+{
+  "name": "React",
+  "version": "1.0.0",
+  "description": "Cursos de React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SnowMoon272/React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SnowMoon272/React/issues"
+  },
+  "homepage": "https://github.com/SnowMoon272/React#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
