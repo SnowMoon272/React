@@ -11,21 +11,21 @@ class BadgeForm extends Component {
   //   })
   // };
 
-  handleClick = (e) => {
-    console.log("The button was clicked");
-  };
+  // handleClick = (e) => {
+  //   console.log("The button was clicked");
+  // };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("The button was submited");
-    console.log(this.state);
-  };
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("The button was submited");
+  //   console.log(this.state);
+  // };
 
   render () {
     return ( 
       <div>
         <h1>New Attendant</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.onSubmit}>
           <div className="form-group">
             <label>Firt Name</label>
             <input 
@@ -80,8 +80,15 @@ class BadgeForm extends Component {
               value={this.props.formValues.twitter}
             />
           </div>
+          <button 
+            onClick={this.handleClick} 
+            className="btn btn-primary">
+              Save
+          </button>
 
-          <button onClick={this.handleClick} className="btn btn-primary">Save</button>
+          {this.props.error && (
+            <p className="text-danger">{this.props.error.message}</p>
+          )}
         </form>
       </div>
     )
