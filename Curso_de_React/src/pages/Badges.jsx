@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import BadgesList from "../components/BadgesList";
 import api from "../api";
 import PageLoading from "../components/PageLoading";
+import MiniLoader from "../components/MiniLoader";
 import PageError from "../components/PageError";
 // Images & Css
 import '../components/styles/Badges.css';
@@ -83,6 +84,12 @@ export class Badges extends Component {
 
 componentDidMount() {
   this.fetchData();
+
+  this.intervalId = setInterval(this.fetchData, 5000);
+}
+
+componentWillUnmount() {
+  clearInterval(this.intervalId);
 }
 
 fetchData = async () => {
@@ -98,7 +105,7 @@ fetchData = async () => {
 
   render() {
     // console.log("2/4.- Render")
-    if (this.state.loading === true) {
+    if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
     }
     if (this.state.error) {
@@ -129,6 +136,7 @@ fetchData = async () => {
           <div className="Badges__container">
             <BadgesList badges={this.state.data}/>
           </div>
+          {this.state.loading && <MiniLoader />}
         </div>
       </React.Fragment>
     )
