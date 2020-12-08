@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 import React, { useState } from 'react';
 import Characters from './components/Characters';
 import Header from './components/Header';
@@ -10,7 +11,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme }}>
-      <div className={`App${theme}`}>
+      <div className={`App ${theme}`}>
         <Header />
         <Characters />
       </div>

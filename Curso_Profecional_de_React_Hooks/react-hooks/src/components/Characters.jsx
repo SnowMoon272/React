@@ -20,7 +20,7 @@ const favoriteRedicer = (state, action) => {
 function Characters() {
 
   const [characters, setCharacters] = useState([]);
-  const [favorites, dispatch] = useReducer(favoriteRedicer, initialState, init);
+  const [favorites, dispatch] = useReducer(favoriteRedicer, initialState);
 
   useEffect(() => {
     fetch('https://rickandmortyapi.com/api/character/')
@@ -28,23 +28,42 @@ function Characters() {
       .then((data) => setCharacters(data.results));
   }, []);
 
+  const handleClick = (favorite) => {
+    dispatch({ type: 'ADD_TO_FAVORITE', payload: favorite });
+  };
+
   return (
     <div className='Characterts'>
+
+      {favorites.favorites.map((favorite) => (
+        <li key={favorite.id}>
+          {favorite.name}
+        </li>
+      ))}
+
       {characters.map((character) => (
-        <h2>
-          <img src={character.image} alt='imagen' />
-          Name:
-          {' '}
-          {character.name}
-          <br />
-          Status:
-          {' '}
-          {character.status}
-          <br />
-          Specie:
-          {' '}
-          {character.species}
-        </h2>
+        <div className='item' key={character.id}>
+          <h2>
+            <img src={character.image} alt='imagen' />
+            Name:
+            {' '}
+            {character.name}
+            <br />
+            Status:
+            {' '}
+            {character.status}
+            <br />
+            Specie:
+            {' '}
+            {character.species}
+            <button
+              type='button'
+              onClick={() => handleClick(character)}
+            >
+              Agregar a Favoritos
+            </button>
+          </h2>
+        </div>
       ))}
     </div>
   );
